@@ -10,7 +10,7 @@ import Output from './output';
 
 function Layout(props) {
     return (
-        <div style={{ marginTop: `20px` }}>
+        <div style={{ marginTop: `20px`, marginLeft: `122px` }}>
             <Box sx={{ width: 1 }}>
                 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
                     <Box sx={{ ml: 40, width: 1000 }} gridColumn="span 10">
