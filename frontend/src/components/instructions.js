@@ -12,7 +12,7 @@ function Instructions(props) {
             <CardMedia
                 component="img"
                 sx={{ width: 180, height: 180 }}
-                image="https://shorturl.at/efFU1"
+                image="https://raw.githubusercontent.com/MLH-Fellowship/speAkIt/1-frontend-home-page/frontend/src/static/images/speakit.PNG"
                 alt="Live from space album cover"
             />
             <Box sx={{ display: "flex", flexDirection: "column" }}>
