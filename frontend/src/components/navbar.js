@@ -11,7 +11,6 @@ function Navbar(props) {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-
                     <Typography
                         variant="h6"
                         noWrap
@@ -20,7 +19,6 @@ function Navbar(props) {
                     >
                         speAkIt
                     </Typography>
-
                 </Toolbar>
             </Container>
         </AppBar >
