@@ -4,12 +4,13 @@ import Box from '@mui/material/Box';
 
 import TextInput from './textInput';
 import Instructions from './instructions';
+import Output from './output';
 
 
 
 function Layout(props) {
     return (
-        <div style={{ marginTop: `30px` }}>
+        <div style={{ marginTop: `20px` }}>
             <Box sx={{ width: 1 }}>
                 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
                     <Box sx={{ ml: 40, width: 1000 }} gridColumn="span 10">
@@ -17,6 +18,9 @@ function Layout(props) {
                     </Box>
                     <Box sx={{ ml: 40, width: 1000 }} gridColumn="span 10">
                         <TextInput />
+                    </Box>
+                    <Box sx={{ ml: 40, width: 1000 }} gridColumn="span 10">
+                        <Output />
                     </Box>
                 </Box>
             </Box>
