@@ -1,10 +1,12 @@
-import { Typography } from '@mui/material';
 import React from 'react';
+import Layout from './components/layout';
+import Navbar from './components/navbar';
 
 function App() {
   return (
     <div className="App">
-      <Typography variant="h1">speAkIt yo!</Typography>
+      <Navbar />
+      <Layout />
     </div>
   );
 }
