@@ -15,7 +15,6 @@ def create_bucket(bucket_name, region=None):
     :param region: String region to create bucket in, e.g., 'us-west-2'
     :return: True if bucket created, else False
     """
-
     # Create bucket
     try:
         if region is None:
@@ -32,38 +31,39 @@ def create_bucket(bucket_name, region=None):
         return False
     return True
 
-def testing_polly(text: str, bucket: str):
+def use_polly(user_text: str, bucket: str, identifier: str):
+    """Use the AWS Polly in order to process the user text into audio
+
+    :user_text: user text sent from the frontend
+    :bucket: name of the bucket
+    :identifier: unique identifier that will be the matching string to search the audio file
+    in the S3 bucket
+    """
+    # polly client
     polly_client = boto3.client("polly")
+    # calling the polly service, it will be sent to the S3 bucket
     response = polly_client.start_speech_synthesis_task(
         Engine='standard',
         LanguageCode='es-US',
         OutputFormat='mp3',
         OutputS3BucketName=bucket,
-        OutputS3KeyPrefix='testing1234',
-        # SampleRate='22050'
-        # SnsTopicArn='string',
-        # SpeechMarkTypes=[
-        #     'sentence'|'ssml'|'viseme'|'word',
-        # ],
-        Text=text,
+        OutputS3KeyPrefix=identifier,
+        Text=user_text,
         TextType='text',
         VoiceId='Brian'
     )
-    # print(response)
 
-# testing_polly("I am testing this 2!", "speakit123125467")
-# time.sleep(5)
-s3_client = boto3.resource('s3')
-objs = s3_client.Bucket("speakit123125467").objects.filter(Prefix="testing1234")
-for obj in objs:
-    print(obj)
+def retrieve_audio_url(bucket: str, identifier: str) -> str:
+    s3_client = boto3.resource('s3')
+    s3_audio_user = s3_client.Bucket(bucket).objects.filter(Prefix=identifier)
+    audio_url = f'https://{bucket}.s3.amazonaws.com/{list(s3_audio_user)[0].key}'
+    return audio_url
+
+# use_polly("I am testing this 2!", "speakit123125467")# time.sleep(5)
+
+print(retrieve_audio_url("speakit123125467", "testing1234"))
+
 # create_bucket("speakit123125467")
-
-# Let's use Amazon S3
-# s3 = boto3.resource('s3')
-
-
-# for bucket in s3.buckets.all():
-#     print(bucket.name)
+# https://speakit123125467.s3.us-east-1.amazonaws.com/4
 
     
