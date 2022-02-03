@@ -50,7 +50,6 @@ class TranscribeViewSet(APIView):
             LanguageCode=language_code,
             OutputBucketName=env('AWS_BUCKET_NAME'),
             OutputKey='transcriptions/',
-            MaxAlternatives=1
         )
 
         if response:
