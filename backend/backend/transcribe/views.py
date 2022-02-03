@@ -60,7 +60,7 @@ class TranscribeViewSet(APIView):
 
     """
     This get method should recive the following query parameters:
-    Example: api.url/transcribe/?transcription_job_name=test_transcription
+    Example: api.url/transcribe/?transcription-job-name=test_transcription
 
     The API will respond with a JSON object with the following fields:
     {
@@ -73,7 +73,7 @@ class TranscribeViewSet(APIView):
 
     def get(self, request):
         transcription_job_name = request.query_params.get(
-            'transcription_job_name')
+            'transcription-job-name')
 
         if not transcription_job_name:
             return Response({"message": "Please provide the transcription job name."})
