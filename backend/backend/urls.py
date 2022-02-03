@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from polly.views import PollyViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('polly/', PollyViewSet.as_view()),
 ]
