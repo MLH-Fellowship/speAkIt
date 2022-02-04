@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'backend.transcribe',
     'backend.upload',
     'corsheaders'
+    'polly.apps.PollyConfig'
 ]
 
 MIDDLEWARE = [
