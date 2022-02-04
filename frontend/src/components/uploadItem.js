@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -47,8 +47,6 @@ function UploadItem(props) {
                 console.log(transcriptionJobName)
                 return transcriptionJobName
             }).then(transcriptionJobName => {
-                // setTranscriptionJob(transcriptionJobName)
-                // console.log(transcriptionJob);
                 let myInterval = setInterval(() => axios.get(`${TRANSCRIBE_URL}?transcription-job-name=${transcriptionJobName}`).then(res => {
                     if (res.data.transcription) {
                         console.log(res.data.transcription);
