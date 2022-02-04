@@ -15,8 +15,10 @@ function UploadItem(props) {
 
     const UPLOAD_URL = `${process.env.REACT_APP_UPLOAD}:8000/upload`;
     const TRANSCRIBE_URL = `${process.env.REACT_APP_UPLOAD}:8000/transcribe`;
+
     let [audioFile, setAudioFile] = useState(null);
     let [sThreeUrl, setSThreeUrl] = useState(null);
+    // let [transcriptionJob, setTranscriptionJob] = useState(null);
 
     function fileUploadHandler(event) {
         event.preventDefault()
@@ -38,18 +40,17 @@ function UploadItem(props) {
         language_code: "en-US"
     }
 
-
     if (objectFromSThree.s3_url != null) {
         console.log(objectFromSThree);
         axios.post(TRANSCRIBE_URL, objectFromSThree).then(res => {
-            console.log(res);
+
+
 
         }).catch((error) => {
             console.log(error);
         });
 
     }
-
 
 
     return (
