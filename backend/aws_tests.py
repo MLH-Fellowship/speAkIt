@@ -20,7 +20,6 @@ def create_bucket(bucket_name, region=None):
         if region is None:
             s3_client = boto3.client('s3')
             response = s3_client.create_bucket(Bucket=bucket_name)
-            print(response)
         else:
             s3_client = boto3.client('s3', region_name=region)
             location = {'LocationConstraint': region}
@@ -60,8 +59,6 @@ def retrieve_audio_url(bucket: str, identifier: str) -> str:
     return audio_url
 
 # use_polly("I am testing this 2!", "speakit123125467")# time.sleep(5)
-
-print(retrieve_audio_url("speakit123125467", "testing1234"))
 
 # create_bucket("speakit123125467")
 # https://speakit123125467.s3.us-east-1.amazonaws.com/4

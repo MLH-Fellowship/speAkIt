@@ -7,7 +7,7 @@ import UploadItem from './uploadItem';
 
 function UserInput(props) {
 
-    const POLLY_URL = `${process.env.REACT_APP_UPLOAD}/polly`;
+    const POLLY_URL = `${process.env.REACT_APP_APIURL}/polly`;
 
     const [text, setText] = useState("");
 
@@ -19,7 +19,7 @@ function UserInput(props) {
     function submitHandler() {
         let polly_request = {
             user_text: text,
-            identifier: "polly/"
+            identifier: "polly/"+Date.now()
         }
         console.log(polly_request);
         axios.post(POLLY_URL, polly_request).then((res => {

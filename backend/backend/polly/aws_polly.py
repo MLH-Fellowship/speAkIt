@@ -4,7 +4,12 @@ from xmlrpc.client import Boolean
 import boto3
 import logging
 from botocore.exceptions import ClientError
+import environ
 import time
+
+env = environ.Env()
+environ.Env.read_env()
+
 
 class PollyService():
     def __init__(self) -> None:
@@ -27,7 +32,6 @@ class PollyService():
         try:
             if region is None:
                 response = self.s3_client.create_bucket(Bucket=bucket_name)
-                print(response)
             else:
                 s3_client = self, boto3.client('s3', region_name=region)
                 location = {'LocationConstraint': region}
@@ -58,12 +62,20 @@ class PollyService():
                 TextType='text',
                 VoiceId='Brian'
             )
+            status = response['SynthesisTask']['TaskStatus']
+            while status != 'completed':
+                time.sleep(1)
+                status = self.polly_client.get_speech_synthesis_task(
+                    TaskId=response['SynthesisTask']['TaskId'])['SynthesisTask']['TaskStatus']
+            self.s3_client.put_object_acl(
+                ACL='public-read', Bucket=bucket, Key='polly/'+response['SynthesisTask']['OutputUri'].split('/')[-1])
         except ClientError as e:
             logging.error(e)
             return "Something wrong happened"
         return response
 
     def retrieve_audio_url(self, bucket: str, identifier: str) -> str:
-        s3_audio_user = self.s3_bucket.Bucket(bucket).objects.filter(Prefix=identifier)
+        s3_audio_user = self.s3_bucket.Bucket(
+            bucket).objects.filter(Prefix=identifier)
         audio_url = f'https://{bucket}.s3.amazonaws.com/{list(s3_audio_user)[0].key}'
         return audio_url

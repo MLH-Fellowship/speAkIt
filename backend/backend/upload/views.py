@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 import environ
 import boto3
+import time
 
 env = environ.Env()
 environ.Env.read_env()
@@ -18,12 +19,12 @@ class UploadViewSet(APIView):
     """
 
     def put(self, request):
-        print(request.data)
         audio_file = request.FILES['audio_file']
         if audio_file.content_type not in ['audio/mpeg', 'audio/mp3']:
             return Response({"message": "The file is not a valid audio file."})
+        date = str(int(round(time.time() * 1000)))
         response = s3_client.put_object(
-            Body=audio_file, Bucket=env('AWS_BUCKET_NAME'), Key=audio_file.name, ACL='public-read')
+            Body=audio_file, Bucket=env('AWS_BUCKET_NAME'), Key=date+audio_file.name, ACL='public-read')
         if response:
             URL = "https://{}.s3.amazonaws.com/{}".format(
                 env('AWS_BUCKET_NAME'), audio_file.name)

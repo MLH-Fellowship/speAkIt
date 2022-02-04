@@ -80,8 +80,6 @@ class TranscribeViewSet(APIView):
             TranscriptionJobName=transcription_job_name)
 
         if response:
-            print(response['TranscriptionJob'])
-
             if response['TranscriptionJob']['TranscriptionJobStatus'] == 'COMPLETED':
                 s3_url = response['TranscriptionJob']['Transcript']['TranscriptFileUri']
                 s3_client.put_object_acl(
