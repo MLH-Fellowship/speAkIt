@@ -1,15 +1,25 @@
 import * as React from 'react';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import { Typography } from '@mui/material';
+import Stack from '@mui/material/Stack';
 
 
 function Output(props) {
+    console.log(props.transcript);
+    const data = props.transcript;
+    const listItems = data.map((d) => <li style={{ color: d.color }} key={Math.random(200)}>{d.word}</li>);
+    const listConfidence = data.map((d) => <li key={Math.random(100)}>{d.confidence}</li>);
+    console.log(listItems);
+
     return (
         <div>
             <Alert severity="info">
                 <AlertTitle>Here is how you did!</AlertTitle>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic.
+                <Stack spacing={30} direction="row">
+                    <Typography sx={{ ml: 30 }}>Words: {listItems}</Typography>
+                    <Typography>Confidence: {listConfidence}</Typography>
+                </Stack>
             </Alert>
         </div>
     );

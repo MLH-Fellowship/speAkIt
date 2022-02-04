@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 
 import UserInput from './input';
 import Instructions from './instructions';
-import Output from './output';
 
 
 
@@ -26,8 +25,9 @@ function Layout(props) {
                         <UserInput />
                     </Box>
                     <Box sx={{ width: 1000 }} gridColumn="span 10">
+
                         <Output />
-                    </Box>
+                    </Box> */}
                 </Box>
             </Box>
         </div>
