@@ -3,6 +3,11 @@ services:
   backend:
     build:
       context: ./backend
+      args:
+        - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+        - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+        - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+        - AWS_BUCKET_NAME=${AWS_BUCKET_NAME}
     image: backend-speakit:latest
     ports:
       - "5000:5000"
