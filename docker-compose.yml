@@ -12,7 +12,10 @@ services:
     ports:
       - "5000:5000"
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        - REACT_APP_APIURL=${REACT_APP_APIURL}
     image: frontend-speakit:latest
     ports:
       - "3000:3000"
