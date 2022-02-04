@@ -15,8 +15,8 @@ const Input = styled('input')({
 
 function UploadItem(props) {
 
-    const UPLOAD_URL = `${process.env.REACT_APP_UPLOAD}/upload`;
-    const TRANSCRIBE_URL = `${process.env.REACT_APP_UPLOAD}/transcribe`;
+    const UPLOAD_URL = `${process.env.REACT_APP_APIURL}/upload`;
+    const TRANSCRIBE_URL = `${process.env.REACT_APP_APIURL}/transcribe`;
 
     const [audioFile, setAudioFile] = useState(null);
     const [transcript, setTranscript] = useState([]);

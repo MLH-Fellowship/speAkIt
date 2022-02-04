@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 
 import UserInput from './input';
 import Instructions from './instructions';
-import Output from './output';
 
 
 
