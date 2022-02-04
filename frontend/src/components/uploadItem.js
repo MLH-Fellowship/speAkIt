@@ -3,8 +3,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
-
-
+import Output from './output';
+import Box from '@mui/material/Box';
 
 const Input = styled('input')({
     color: 'darkslategray',
@@ -18,13 +18,9 @@ function UploadItem(props) {
     const UPLOAD_URL = `${process.env.REACT_APP_UPLOAD}:8000/upload`;
     const TRANSCRIBE_URL = `${process.env.REACT_APP_UPLOAD}:8000/transcribe`;
 
-    let [audioFile, setAudioFile] = useState(null);
-    let [transcriptionJob, setTranscriptionJob] = useState("");
+    const [audioFile, setAudioFile] = useState(null);
+    const [transcript, setTranscript] = useState([]);
 
-    useEffect(() => {
-        console.log(transcriptionJob);
-        setTimeout(() => axios.get(`${TRANSCRIBE_URL}?transcription-job-name=${transcriptionJob}`).then(res => { console.log(res) }), 30000)
-    }, [TRANSCRIBE_URL, transcriptionJob])
 
     function fileUploadHandler(event) {
         let data = new FormData()
@@ -51,22 +47,33 @@ function UploadItem(props) {
                 console.log(transcriptionJobName)
                 return transcriptionJobName
             }).then(transcriptionJobName => {
-                setTranscriptionJob(transcriptionJobName)
-                console.log(transcriptionJob);
-                return axios.get(`${TRANSCRIBE_URL}?transcription-job-name=${transcriptionJobName}`)
-            }).then(res => {
-                console.log(res)
+                // setTranscriptionJob(transcriptionJobName)
+                // console.log(transcriptionJob);
+                let myInterval = setInterval(() => axios.get(`${TRANSCRIBE_URL}?transcription-job-name=${transcriptionJobName}`).then(res => {
+                    if (res.data.transcription) {
+                        console.log(res.data.transcription);
+                        setTranscript(res.data.transcription)
+                        clearInterval(myInterval)
+                    }
+
+                }), 5000)
             })
             .catch((error) => {
                 console.log(error);
             });
     }
+    console.log(transcript)
 
-    return (
+    return (<>
         <Stack spacing={2} direction="row">
             <Input accept="audio/*" type="file" onChange={(e) => { setAudioFile(e.target.files[0]) }} />
             <Button onClick={fileUploadHandler} variant="outlined" style={{ width: 800 }}>UPLOAD AUDIO</Button>
+
         </Stack>
+        <Box sx={{ ml: 40, width: 1000 }} gridColumn="span 10">
+            <Output transcript={transcript} />
+        </Box>
+    </>
     );
 }
 
