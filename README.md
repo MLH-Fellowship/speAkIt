@@ -45,12 +45,11 @@ Our personal learnings are the following:
   - With the amazing programming sessions with my team I also learnt about React, Docker, GCP and teamwork, thank you guys!  
 
 
-## What's next for speakit *
+## What's next for speAkIt
 - Select the language of the text/recording, so you can practice any language suported by AWS Transcribe
 - See how well overall your pronunciation was (either a score or percentage)
 - Recording of the voice from the app
 - Hear the text with a TTS service, so you can know how to pronounce correctly
-- 
 ## Built With
 <p align="center">
 <img src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/python/python-original.svg" alt="python" width="40" height="40"/>
