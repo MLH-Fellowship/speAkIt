@@ -6,11 +6,11 @@ import Stack from '@mui/material/Stack';
 
 
 function Output(props) {
-    console.log(props.transcript);
+
     const data = props.transcript;
     const listItems = data.map((d) => <li style={{ color: d.color }} key={Math.random(200)}>{d.word}</li>);
     const listConfidence = data.map((d) => <li key={Math.random(100)}>{d.confidence}</li>);
-    console.log(listItems);
+
 
     return (
         <div>

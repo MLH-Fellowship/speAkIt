@@ -20,23 +20,23 @@ function UserInput(props) {
 
     function textHandler(e) {
         setText(e.target.value)
-        console.log(text);
+
     }
 
     function submitHandler() {
         setWorking(true)
-        console.log(working);
+
         let polly_request = {
             user_text: text,
             identifier: "polly/" + Date.now()
         }
-        console.log(polly_request);
+
         axios.post(POLLY_URL, polly_request).then((res => {
-            console.log(res.data.aws_polly_response.SynthesisTask.OutputUri);
+
 
             setAudio(res.data.aws_polly_response.SynthesisTask.OutputUri)
             axios.get(res.data.aws_polly_response.SynthesisTask.OutputUri).then((res) => {
-                console.log(res);
+
 
             })
 

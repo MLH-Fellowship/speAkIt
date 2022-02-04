@@ -32,24 +32,24 @@ function UploadItem(props) {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(res => {
-            console.log(res.data.s3_url);
+
             return res.data.s3_url
         }).then(s3_url => {
             let objectFromSThree = {
                 s3_url: s3_url,
                 language_code: "en-US"
             }
-            console.log(objectFromSThree)
+
             return objectFromSThree
         }).then(objectFromSThree => { return axios.post(TRANSCRIBE_URL, objectFromSThree) })
             .then(res => { return res.data.transcription_job_name })
             .then((transcriptionJobName) => {
-                console.log(transcriptionJobName)
+
                 return transcriptionJobName
             }).then(transcriptionJobName => {
                 let myInterval = setInterval(() => axios.get(`${TRANSCRIBE_URL}?transcription-job-name=${transcriptionJobName}`).then(res => {
                     if (res.data.transcription) {
-                        console.log(res.data.transcription);
+
                         setTranscript(res.data.transcription)
                         clearInterval(myInterval)
                     }
@@ -60,7 +60,6 @@ function UploadItem(props) {
                 console.log(error);
             });
     }
-    console.log(transcript)
 
     return (<>
         <Stack spacing={2} direction="row">

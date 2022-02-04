@@ -26,10 +26,10 @@ function Instructions(props) {
                         Welcome to speAkIt!
                     </Typography>
                     <Typography variant="subtitle1" gutterBottom component="div">
-                        Step1. Add your text below, and check the correct pronunciation by clicking on submit text.
+                        Step 1. Add your text below, and check the correct pronunciation by clicking on submit text.
                     </Typography>
                     <Typography variant="subtitle1" gutterBottom component="div">
-                        Step2. Record yourself reading a few sentences and upload to our app. We will depict you how good your pronouciation is.
+                        Step 2. Record yourself reading a few sentences and upload to our app. We will depict you how good your pronouciation is.
                     </Typography>
 
                 </CardContent>
