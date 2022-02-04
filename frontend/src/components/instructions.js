@@ -39,6 +39,10 @@ function Instructions(props) {
                     <Typography variant="subtitle1" gutterBottom component="div">
                         <span role="img" aria-label="r">🔴 -> Bad pronunciation</span>
                     </Typography>
+                    <Typography variant="subtitle1" gutterBottom component="div">
+                        <b>Important:</b> The audio must be an .mp3, if you record a video and change the
+                        extension it won't work.
+                    </Typography>
 
                 </CardContent>
                 <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}></Box>
