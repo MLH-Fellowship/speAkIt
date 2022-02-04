@@ -6,5 +6,4 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     path('', views.TranscribeViewSet.as_view(), name='transcribe'),
-    path('/<int:id>', views.TranscribeViewSet.as_view(), name='transcribe'),
 ]
