@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from polly.views import PollyViewSet
 
 urlpatterns = [
     path('admin', admin.site.urls),
     path('transcribe', include('backend.transcribe.urls')),
-    path('upload', include('backend.upload.urls'))
-    path('polly', PollyViewSet.as_view()),
+    path('upload', include('backend.upload.urls')),
+    path('polly', include('backend.polly.urls')),
 ]
