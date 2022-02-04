@@ -19,8 +19,6 @@ RUN npm run build
 # Stage 2
 FROM nginx:1.13-alpine
 COPY --from=build /app/build /usr/share/nginx/html
-RUN chown -R www-data:www-data /usr/share/nginx/html
-RUN chmod -R 755 /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d
 
