@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Box from '@mui/material/Box';
 
-import TextInput from './textInput';
+import UserInput from './input';
 import Instructions from './instructions';
 import Output from './output';
 
@@ -17,7 +17,7 @@ function Layout(props) {
                         <Instructions />
                     </Box>
                     <Box sx={{ ml: 40, width: 1000 }} gridColumn="span 10">
-                        <TextInput />
+                        <UserInput />
                     </Box>
                     <Box sx={{ ml: 40, width: 1000 }} gridColumn="span 10">
                         <Output />
