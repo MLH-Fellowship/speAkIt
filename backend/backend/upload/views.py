@@ -27,7 +27,7 @@ class UploadViewSet(APIView):
             Body=audio_file, Bucket=env('AWS_BUCKET_NAME'), Key=date+audio_file.name, ACL='public-read')
         if response:
             URL = "https://{}.s3.amazonaws.com/{}".format(
-                env('AWS_BUCKET_NAME'), audio_file.name)
+                env('AWS_BUCKET_NAME'), date+audio_file.name)
             return Response({"message": "Successfully uploaded file", "s3_url": URL, "aws_response": response})
         else:
             return Response({"message": "Failed to upload file", "aws_response": response})
