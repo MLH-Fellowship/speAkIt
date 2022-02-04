@@ -18,6 +18,7 @@ class UploadViewSet(APIView):
     """
 
     def put(self, request):
+        print(request.data)
         audio_file = request.FILES['audio_file']
         if audio_file.content_type not in ['audio/mpeg', 'audio/mp3']:
             return Response({"message": "The file is not a valid audio file."})
