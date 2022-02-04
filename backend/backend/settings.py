@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'backend.transcribe',
     'backend.upload',
-    'corsheaders'
+    'corsheaders',
+    'backend.polly',
 ]
 
 MIDDLEWARE = [
