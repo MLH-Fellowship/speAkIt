@@ -10,7 +10,7 @@ import Output from './output';
 
 function Layout(props) {
     const myComponentStyle = {
-        padding: '1.5em',
+        padding: '1.5em 10em 1em 10em',
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -22,10 +22,10 @@ function Layout(props) {
                     <Box sx={{ width: 1000 }} gridColumn="span 10">
                         <Instructions />
                     </Box>
-                    <Box sx={{width: 1000 }} gridColumn="span 10">
+                    <Box sx={{ width: 1000 }} gridColumn="span 10">
                         <UserInput />
                     </Box>
-                    <Box sx={{width: 1000 }} gridColumn="span 10">
+                    <Box sx={{ width: 1000 }} gridColumn="span 10">
                         <Output />
                     </Box>
                 </Box>
