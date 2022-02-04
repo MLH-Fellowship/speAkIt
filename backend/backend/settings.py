@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3#b27!w(a8h5y9-pia(!x@xh(3h&n*_4un%g#t5+tx=9kt+1vh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'backend.transcribe',
     'backend.upload',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+# # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000', 'http://localhost:3000', 'http://127.0.0.1:8000', 'http://127.0.0.1:3000'
 ]
 
 ROOT_URLCONF = 'backend.urls'

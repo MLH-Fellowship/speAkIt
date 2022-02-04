@@ -80,9 +80,10 @@ class TranscribeViewSet(APIView):
             TranscriptionJobName=transcription_job_name)
 
         if response:
-            s3_url = response['TranscriptionJob']['Transcript']['TranscriptFileUri']
-            if response['TranscriptionJob']['TranscriptionJobStatus'] == 'COMPLETED':
+            print(response['TranscriptionJob'])
 
+            if response['TranscriptionJob']['TranscriptionJobStatus'] == 'COMPLETED':
+                s3_url = response['TranscriptionJob']['Transcript']['TranscriptFileUri']
                 s3_client.put_object_acl(
                     ACL='public-read', Bucket=env('AWS_BUCKET_NAME'), Key="transcriptions/"+transcription_job_name+'.json')
                 json_data = urllib.request.urlopen(s3_url)
