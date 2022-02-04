@@ -26,7 +26,7 @@ function Layout(props) {
                     </Box>
                     <Box sx={{ width: 1000 }} gridColumn="span 10">
 
-                        <Output />
+                        {/* <Output /> */}
                     </Box> */}
                 </Box>
             </Box>
